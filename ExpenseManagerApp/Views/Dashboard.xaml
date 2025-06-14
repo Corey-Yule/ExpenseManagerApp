@@ -1,12 +1,62 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ExpenseManagerApp.Views.NewPage1"
-             Title="NewPage1">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:Class="ExpenseManagerApp.Views.Dashboard"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#1E293B">
+
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Summary Cards -->
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto">
+                <Frame BackgroundColor="#4CAF50" CornerRadius="15" Padding="15" Margin="5">
+                    <!-- Total Income -->
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTotalIncomeTapped" />
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout>
+                        
+                        <Label Text="Total Income" TextColor="White" FontAttributes="Bold" />
+                        <Label Text="{Binding TotalIncome, StringFormat='£{0:F2}'}" TextColor="White" FontSize="24" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#F44336" CornerRadius="15" Padding="15" Margin="5" Grid.Column="1">
+                    <!--Expenses Total-->
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTotalExpensesTapped" />
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout>
+                        <Label Text="Total Expenses" TextColor="White" FontAttributes="Bold" />
+                        <Label Text="{Binding TotalExpenses, StringFormat='£{0:F2}'}" TextColor="White" FontSize="24" />
+                    </VerticalStackLayout>
+                </Frame>
+
+            </Grid>
+
+            <!-- Optional Chart Placeholder -->
+            <Frame CornerRadius="15" Padding="10" Margin="5" BackgroundColor="#EEEEEE">
+                <Label Text="[Insert Chart Here]" HorizontalOptions="Center" VerticalOptions="Center" />
+            </Frame>
+
+            <!-- Recent Transactions -->
+            <Label Text="Recent Transactions" TextColor="White" FontAttributes="Bold" FontSize="18" />
+            <CollectionView ItemsSource="{Binding RecentTransactions}"
+                            SelectionMode="Single"
+                            SelectionChanged="OnTransactionSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="#ccc" BackgroundColor="#2F4F4F"  CornerRadius="10" Padding="15" Margin="5" >
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Text="{Binding Title}" TextColor="White" />
+                                <Label Text="{Binding Amount, StringFormat='£{0:F2}'}" TextColor="White" HorizontalOptions="End" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

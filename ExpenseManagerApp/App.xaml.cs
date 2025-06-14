@@ -14,7 +14,7 @@ namespace ExpenseManagerApp
             Services = serviceProvider;
 
             var db = Services.GetRequiredService<AppDatabase>();
-            MainPage = new NavigationPage(new MainPage(db));   // <--- now works
+            MainPage = new NavigationPage(new Dashboard());   // <--- now works
         }
     }
 }
