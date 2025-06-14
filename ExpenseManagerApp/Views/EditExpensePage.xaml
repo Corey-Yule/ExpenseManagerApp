@@ -1,0 +1,23 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExpenseManagerApp.Views.EditExpensePage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#1E293B">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Label
+            Text="Edit Expense"
+            FontSize="24"
+            HorizontalOptions="Center"
+            TextColor="White" />
+        
+
+        <Entry x:Name="TitleEntry" Placeholder="Title" TextColor="White" />
+        <Entry x:Name="AmountEntry" Placeholder="Amount" Keyboard="Numeric" TextColor="White" />
+        <Entry x:Name="CategoryEntry" Placeholder="Category" TextColor="White" />
+        <DatePicker x:Name="DatePicker" TextColor="White" />
+
+        <Button Text="Save Changes" Clicked="OnSaveClicked" BackgroundColor="#4CAF50" TextColor="White" />
+    </VerticalStackLayout>
+</ContentPage>
